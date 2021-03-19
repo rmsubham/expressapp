@@ -18,7 +18,34 @@ let dataid ={};
         }
         res.send(dataid);
 
+});
+router.post('/', (req, res) => {
+  console.log("This route is for posting data its a post request");
+  let riciveddata = req.body;
+  data.students.push(riciveddata);
+  res.send({message : 'data inserted', status : 200})
+
+});
+router.put('/:id', (req,res) => {
+  let id = req.params.id
+  let riciveddata = req.body
+  for(let i =0 ; i < data.students.length; i++){
+    if(data.students[i].id == id){
+        data.students[i] = riciveddata
+    }
+  }
+  res.send({message : ' data is changed', status : 200})
+});
+router.delete('/:id', ( req, res) => {
+  let id = req.params.id;
+  let index ;
+  for(let i = 0 ; i < data.students.length; i++){
+    if(data.students[i] == id ){
+      index = i;
+      data.students.splice(index, 1)
+    }
+
+  }
+  res.send({message : "data deleted", status : 200})
 })
-
-
 module.exports = router;
