@@ -1,7 +1,9 @@
+const dotenv = require('dotenv')
+dotenv.config({path: './src/config.env' })
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
-const port = process.env.PORT || 6000
+const PORT = process.env.PORT 
 const bodyParser = require('body-parser')
 const { urlencoded } = require('body-parser')
 require('./src/db/conn')
@@ -22,6 +24,6 @@ app.get('/cricketapi', (req, res) => {
 })
 
 
-app.listen(port, () => {
-  console.log(`server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
